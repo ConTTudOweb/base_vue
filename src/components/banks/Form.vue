@@ -10,6 +10,10 @@
           Cadastros  de Bancos
         </v-card-title>
         <v-container grid-list-sm class="pa-4">
+          <v-alert color="error" icon="warning" :value="alert.show" outline>
+            <h4>Ops!</h4>
+            <p>{{alert.message}}</p>
+          </v-alert>
           <v-layout row wrap>
             <v-flex xs3>
               <v-text-field
@@ -45,12 +49,15 @@ export default {
   data () {
     return {
       dialog: false,
-      form: {}
+      form: {},
+      alert: {
+        show: false,
+        message: ''
+      }
     }
   },
   methods: {
     show (data) {
-      console.log(data)
       if (typeof data !== 'undefined') {
         this.form = data
       } else {
@@ -73,10 +80,15 @@ export default {
         res => {
           this.dialog = false
           this.$emit('update')
-        },
+        }
+      ).catch(
         err => {
           this.dialog = true
-          console.log(err)
+          let errRet = err.response.data
+          if (errRet.hasOwnProperty('code')) {
+            this.alert.message = errRet['code'][0]
+            this.alert.show = true
+          }
         }
       )
     }
