@@ -1,7 +1,7 @@
 <template>
   <div id="bank">
     <cont-form-bank ref="bankForm" @update="load"></cont-form-bank>
-    <cont-remove ref="bankRemove" @update="load" api="api/bank/"></cont-remove>
+    <cont-remove ref="bankRemove" @update="load" api="api/banks/"></cont-remove>
     <v-layout child-flex wrap xs12>
       <kendo-grid :data-source="dsBank"
                   :pageable="true"
@@ -40,7 +40,7 @@
       dsBank () {
         return new kendo.data.DataSource({
           transport: {
-            read: 'api/bank/'
+            read: 'api/banks/'
           }
         })
       },

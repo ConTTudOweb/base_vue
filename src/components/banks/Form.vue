@@ -45,11 +45,7 @@ export default {
   data () {
     return {
       dialog: false,
-      form: {
-        id: 0,
-        code: '',
-        description: ''
-      }
+      form: {}
     }
   },
   methods: {
@@ -57,12 +53,18 @@ export default {
       console.log(data)
       if (typeof data !== 'undefined') {
         this.form = data
+      } else {
+        this.form = {
+          id: 0,
+          code: '',
+          description: ''
+        }
       }
       this.dialog = true
     },
     save () {
       let method = this.edit ? 'PUT' : 'POST'
-      let url = this.edit ? `api/bank/${this.form.id}/` : 'api/bank/'
+      let url = this.edit ? `api/banks/${this.form.id}/` : 'api/banks/'
       this.axios({
         url: url,
         method: method,
