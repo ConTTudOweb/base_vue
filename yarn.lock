@@ -2,6 +2,38 @@
 # yarn lockfile v1
 
 
+"@progress/kendo-base-components-vue-wrapper@2018.1.117":
+  version "2018.1.117"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-base-components-vue-wrapper/-/kendo-base-components-vue-wrapper-2018.1.117.tgz#a547c7833bd60c52a284da3c2fa33f461d74b599"
+
+"@progress/kendo-datasource-vue-wrapper@^2018.1.117":
+  version "2018.1.117"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-datasource-vue-wrapper/-/kendo-datasource-vue-wrapper-2018.1.117.tgz#f697ff6cd52ca958b32ae471fd722b1ba4f64f54"
+  dependencies:
+    "@progress/kendo-base-components-vue-wrapper" "2018.1.117"
+
+"@progress/kendo-grid-vue-wrapper@^2018.1.117":
+  version "2018.1.117"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-grid-vue-wrapper/-/kendo-grid-vue-wrapper-2018.1.117.tgz#de5021eb89da6c06395f431a787da3d2f64cb9a6"
+  dependencies:
+    "@progress/kendo-base-components-vue-wrapper" "2018.1.117"
+
+"@progress/kendo-theme-default@^2.0.0", "@progress/kendo-theme-default@^2.47.2":
+  version "2.47.2"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-default/-/kendo-theme-default-2.47.2.tgz#e481397f4d2808870dee1a308aa9e87d5cb66eb5"
+
+"@progress/kendo-theme-material@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-material/-/kendo-theme-material-0.3.0.tgz#f531825139de0f8d5c54de3e18de92973d2d91d1"
+  dependencies:
+    "@progress/kendo-theme-default" "^2.0.0"
+
+"@progress/kendo-ui@^2018.1.117":
+  version "2018.1.117"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-ui/-/kendo-ui-2018.1.117.tgz#1866db8e3ad122e1681a5c4e3c628dfc0d600abf"
+  dependencies:
+    jquery "<=3"
+
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
@@ -4250,7 +4282,7 @@ jest@^21.2.0:
   dependencies:
     jest-cli "^21.2.1"
 
-jquery@^3.3.1:
+jquery@<=3, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 

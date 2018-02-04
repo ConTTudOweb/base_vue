@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="290">
+  <v-dialog v-model="dialog" max-width="350">
     <v-card>
       <v-card-title class="headline">Remover o Registro</v-card-title>
       <v-card-text>Você tem certeza que deseja remover o registro?</v-card-text>
@@ -19,11 +19,6 @@ export default {
     api: {
       type: String,
       required: true
-    },
-    key: {
-      type: String,
-      required: true,
-      default: 'id'
     }
   },
   data () {
@@ -37,7 +32,7 @@ export default {
       this.dialog = true
     },
     remover () {
-      let url = `${this.api}${this.data[this.key]}/`
+      let url = `${this.api}${this.data.id}/`
       this.axios.delete(url).then(
         res => {
           this.dialog = false

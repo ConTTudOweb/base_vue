@@ -7,6 +7,7 @@ import router from './router'
 import store from '@/plugins/vuex'
 import '@/plugins/axios'
 import '@/plugins/vuetify'
+import '@/plugins/kendoui'
 import '@/plugins/custom_components'
 
 Vue.config.productionTip = false

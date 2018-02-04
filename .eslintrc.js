@@ -10,6 +10,9 @@ module.exports = {
     browser: true,
     jquery: true
   },
+  globals : {
+    kendo: false
+  },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'standard',
   // required to lint *.vue files

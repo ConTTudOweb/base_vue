@@ -1,33 +1,18 @@
 <template>
   <div id="bank">
-    <cont-form-bank ref="bankForm" @update="fetchBanks"></cont-form-bank>
-    <!--<cont-remove ref="bankRemove" @update="fetchBanks" api="api/bank/" key="id"></cont-remove>-->
+    <cont-form-bank ref="bankForm" @update="load"></cont-form-bank>
+    <cont-remove ref="bankRemove" @update="load" api="api/bank/"></cont-remove>
     <v-layout child-flex wrap xs12>
-      <v-data-table
-        :headers="headers"
-        :items="banks"
-        :loading="loading"
-        :total-items="banks.length"
-        class="elevation-1"
-      >
-        <template slot="items" slot-scope="props">
-          <td>{{ props.item.code }}</td>
-          <td>{{ props.item.description }}</td>
-        </template>
-      </v-data-table>
-      <!--<v-data-table-->
-        <!--:headers="headers"-->
-        <!--:items="banks"-->
-        <!--hide-actions-->
-        <!--class="elevation-1"-->
-        <!--key="code"-->
-      <!--&gt;-->
-        <!--<template slot="banks" slot-scope="props">-->
-          <!--<td>{{ props.item.id }}</td>-->
-          <!--<td>{{ props.item.code }}</td>-->
-          <!--<td>{{ props.item.description }}</td>-->
-        <!--</template>-->
-      <!--</v-data-table>-->
+      <kendo-grid :data-source="dsBank"
+                  :pageable="true"
+                  :sortable="true"
+                  ref="grid">
+        <kendo-grid-column field="code"
+                           title="Código"></kendo-grid-column>
+        <kendo-grid-column field="description"
+                           title="Descriçao"></kendo-grid-column>
+        <kendo-grid-column :command="actionsCommand" :width="220"></kendo-grid-column>
+      </kendo-grid>
     </v-layout>
     <v-btn
       fab
@@ -48,32 +33,51 @@
     name: 'Banks',
     data () {
       return {
-        loading: true,
-        headers: [
-          { text: 'Código', value: 'code' },
-          { text: 'Descrição', value: 'description' }
-        ],
-        banks: [],
         dialog: false
       }
     },
-    methods: {
-      showForm (data) {
-        this.$refs.bankForm.show(data)
-      },
-      fetchBanks () {
-        this.loading = true
-        this.axios.get('api/bank/').then((response) => {
-          this.banks = response.data
-          this.loading = false
+    computed: {
+      dsBank () {
+        return new kendo.data.DataSource({
+          transport: {
+            read: 'api/bank/'
+          }
         })
       },
-      remove (data) {
-        this.$refs.bankRemove.show(data)
+      actionsCommand () {
+        let self = this
+        return [
+          {
+            name: 'edit',
+            text: 'Editar',
+            iconClass: 'k-icon k-i-edit',
+            click (e) {
+              e.preventDefault()
+              let data = this.dataItem($(e.currentTarget).closest('tr'))
+              self.showForm(data)
+            }
+          },
+          {
+            name: 'remove',
+            text: 'Apagar',
+            className: 'red--text',
+            iconClass: 'k-icon k-i-close',
+            click (e) {
+              e.preventDefault()
+              let data = this.dataItem($(e.currentTarget).closest('tr'))
+              self.$refs.bankRemove.show(data)
+            }
+          }
+        ]
       }
     },
-    mounted () {
-      this.fetchBanks()
+    methods: {
+      load () {
+        this.dsBank.read()
+      },
+      showForm (data) {
+        this.$refs.bankForm.show(data)
+      }
     }
   }
 </script>
