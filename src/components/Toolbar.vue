@@ -7,13 +7,16 @@
       fixed
     >
       <v-toolbar-title class="ml-0 pl-3">
-        <span class="hidden-xs-only">Alessandro Demo</span>
+        <span class="hidden-xs-only">ConTTudOweb App</span>
       </v-toolbar-title>
           <v-btn icon to="/home">
         <v-icon>home</v-icon>
       </v-btn>
       <v-btn icon to="/banks">
-        <v-icon>account_circle</v-icon>
+        <v-icon>account_balance</v-icon>
+      </v-btn>
+      <v-btn icon to="/deposit_accounts">
+        <v-icon>account_balance_wallet</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
       <span>{{auth.email}}</span>
